@@ -72,7 +72,7 @@ public class Application {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return "测试号";
+        return "mp";
     }
     
     /**
@@ -85,7 +85,7 @@ public class Application {
     String kfTest() {
         
         
-        return "多客服";
+        return "kf";
     }
     
     public static void main(String[] args) throws Exception {
