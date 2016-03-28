@@ -74,6 +74,37 @@ public class Application {
         }
         return "mp";
     }
+    //获取access token: https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET
+    
+    /**
+     * 银通服务号
+     * @Title: mpTest
+     * @Description: TODO(这里用一句话描述这个方法的作用)
+     * @return
+     */
+    @RequestMapping("/yt")
+    String ytTest(){
+        WxMpInMemoryConfigStorage config = new WxMpInMemoryConfigStorage();
+        config.setAppId("wxfb1296b5748efb49"); // 设置微信公众号的appid
+        config.setSecret("761f68f0e1d1819836430e56dd0cf8b3"); // 设置微信公众号的app corpSecret
+        config.setToken("grgrache"); // 设置微信公众号的token
+        config.setAesKey("QYCq1LoudRrtXSQMwgTD4ZplwDtl6fJZ67mSaKDNjHZ"); // 设置微信公众号的EncodingAESKey
+
+        WxMpService wxService = new WxMpServiceImpl();
+        wxService.setWxMpConfigStorage(config);
+
+        // 用户的openid在下面地址获得 
+        // https://mp.weixin.qq.com/debug/cgi-bin/apiinfo?t=index&type=用户管理&form=获取关注者列表接口%20/user/get 
+        String openid = "olv2Vt6fW1_jUKP09G7slxL3dyic";//GraddyWang
+        WxMpCustomMessage message = WxMpCustomMessage.TEXT().toUser(openid).content("Hello World").build();
+        try {
+            wxService.customMessageSend(message);
+        } catch (WxErrorException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return "mp";
+    }
     
     /**
      * 
